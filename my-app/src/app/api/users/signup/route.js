@@ -1,14 +1,15 @@
 import { connect } from "@/dbConfig/dbConfig.js";
-import User from "@/models/userModel.js";
+// import User from "@/models/userModel.js";
 import { NextRequest,NextResponse } from "next/server";
 import bcryptjs from "bcryptjs"
+import User from "@/models/userModel.js";
 
 connect();
 
 export async function POST(request) {
     try{
         const reqBody = await request.json();
-        console.log(reqBody)
+        console.log(reqBody);
         const {username,email,password} = reqBody;
 
         //check the user
@@ -35,6 +36,7 @@ export async function POST(request) {
       })
 
     }catch(err){
+      console.error("Error in signup route:", err); // log full error
         return NextResponse.json({err:err.message},{status:500})
     }
 }
