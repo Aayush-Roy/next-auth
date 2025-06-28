@@ -57,14 +57,11 @@ export async function POST(request) {
   try {
     const reqBody = await request.json();
     const { username, email, password } = reqBody;
+    // Password strength validation
+    // if (typeof password !== 'string' || password.length < 8 || !/[A-Z]/.test(password) || !/[a-z]/.test(password) || !/[0-9]/.test(password)) {
+    //   return NextResponse.json({ success: false, error: "Password must be at least 8 characters and include upper, lower, and number." }, { status: 400 });
+    // }
 
-    // unique email
-    if (await User.findOne({ email }))
-      return NextResponse.json({ success:false, error:"User already exists" }, { status:400 });
-
-    // unique username (optional)
-    if (await User.findOne({ username }))
-      return NextResponse.json({ success:false, error:"Username taken" }, { status:400 });
 
     // hash
     const hashedPassword = await bcryptjs.hash(password, 10);

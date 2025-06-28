@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server'
 // This function can be marked `async` if using `await` inside
 export function middleware(request) {
   const path = request.nextUrl.pathname;
-  const isPublicPath = path === "/login" || path === "/signup";
+  const isPublicPath = path === "/login" || path === "/signup" || path=="/verify";
    const token = request.cookies.get('token')?.value;
   if (isPublicPath && token) {
     // Logged-in user trying to access login/signup — redirect them to home
@@ -20,5 +20,5 @@ export function middleware(request) {
  
 // See "Matching Paths" below to learn more
 export const config = {
-  matcher: ['/', '/profile/:path*', '/login', '/signup'],
+  matcher: ['/', '/profile/:path*', '/login', '/signup','/verify'],
 };
