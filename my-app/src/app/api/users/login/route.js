@@ -4,7 +4,7 @@ import bcryptjs from "bcryptjs"
 import User from "@/models/userModel.js";
 import jwt from "jsonwebtoken"
 
-connect();
+await connect();
 export async function POST(request) {
     try{
         const reqBody = await request.json();
