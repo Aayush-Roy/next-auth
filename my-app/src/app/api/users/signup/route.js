@@ -51,9 +51,10 @@ import bcryptjs from "bcryptjs";
 import { SendEmail } from "@/helpers/mailer";
 
 // ensure DB ready before first query
-await connect();
+
 
 export async function POST(request) {
+  await connect();
   try {
     const reqBody = await request.json();
     const { username, email, password } = reqBody;
